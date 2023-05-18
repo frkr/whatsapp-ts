@@ -99,7 +99,7 @@ export function challenge(request: Request, VERIFY_TOKEN: string): Response {
         if (
             query.get('hub.mode') === "subscribe" &&
             query.get('hub.verify_token') === VERIFY_TOKEN
-            && request.cf.asOrganization === "Facebook" // Cloudflare
+            //&& request.cf?.asOrganization === "Facebook" // Cloudflare
         ) {
             return new Response(query.get('hub.challenge'), {status: 200});
         }
@@ -134,19 +134,19 @@ export async function getImage(url: string, apikey: string): Promise<Blob> {
     return await (await fetch(url, {
             headers: {
                 Authorization: `Bearer ${apikey}`,
-                "User-Agent": null,//"Cloudflare Workers",
+                //'User-Agent': "Cloudflare Workers",
                 //"Accept": "image/webp;"
             },
             method: "GET",
-            cf: { // TODO Cloudflare
-                image: {
-                    width: 512,
-                    height: 512,
-                    fit: "cover",
-                },
-                polish: "lossless",
-                webp: true,
-            }
+            // cf: { // TODO Cloudflare
+            //     image: {
+            //         width: 512,
+            //         height: 512,
+            //         fit: "cover",
+            //     },
+            //     polish: "lossless",
+            //     webp: true,
+            // }
         }
     )).blob();
 }

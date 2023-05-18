@@ -1,0 +1,8 @@
+{
+  "name": "business-whatsapp",
+  "version": "0.16.0",
+  "private": "public",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}

@@ -20,6 +20,7 @@ jobs:
       - name: tsc compile
         with:
           project: ./tsconfig.json
+        run: tsc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

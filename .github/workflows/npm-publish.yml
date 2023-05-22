@@ -5,19 +5,7 @@ name: Node.js Package
 
 on:
   push:
-    branches: master
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm ci
-      - run: tsc
-      #- run: npm test
+  pull_request:
 
   publish-npm:
     needs: build
@@ -29,7 +17,10 @@ jobs:
           node-version: 18
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: tsc
+      - name: tsc compile
+        uses: iCrawl/action-tsc@v1
+        with:
+          project: subdirectorywith_tsconfig
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

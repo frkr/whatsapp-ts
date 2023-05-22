@@ -18,7 +18,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - name: tsc compile
-        uses: iCrawl/action-tsc@v1
+        with:
+          project: ./tsconfig.json
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

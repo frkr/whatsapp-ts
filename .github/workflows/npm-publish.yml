@@ -19,6 +19,7 @@ jobs:
       - uses: iCrawl/action-tsc@v1
 
   publish-npm:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - uses: iCrawl/action-tsc@v1
+      - run: npm build
 
   publish-npm:
     needs: build

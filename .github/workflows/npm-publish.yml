@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm ci
-      - run: npm build
+      - run: npm i
+      - run: tsc
 
   publish-npm:
     needs: build

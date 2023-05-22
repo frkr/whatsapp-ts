@@ -3,8 +3,8 @@
     "src/index.ts"
   ],
   "compilerOptions": {
-    "target": "es2015",
-    "module": "es2015",
+    "target": "es2016",
+    "module": "es2016",
     "declaration": true,
     "outDir": "./dist",
     "types": [
@@ -26,7 +26,7 @@
     //    "noUncheckedIndexedAccess": true,
     //    "noImplicitOverride": true,
     //    "noPropertyAccessFromIndexSignature": true,
-    "esModuleInterop": true
+    //    "esModuleInterop": true
     //    "forceConsistentCasingInFileNames": true,
     //    "skipLibCheck": true
   }

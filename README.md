@@ -1,5 +1,7 @@
 # Business Whatsapp 16
 
+[![Node.js Package](https://github.com/frkr/whatsapp-ts/actions/workflows/npm-publish.yml/badge.svg?branch=master)](https://github.com/frkr/whatsapp-ts/actions/workflows/npm-publish.yml)
+
 ```shell
 npm i --save business-whatsapp
 ```

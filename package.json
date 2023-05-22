@@ -2,7 +2,7 @@
   "name": "business-whatsapp",
   "author": "frkr",
   "license": "MIT",
-  "version": "0.16.21",
+  "version": "0.16.22",
   "description": "WhatsApp Business API Client",
   "homepage": "https://ideias.casa/",
   "repository": {
@@ -10,9 +10,10 @@
     "url": "https://github.com/frkr/whatsapp-ts"
   },
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./src/WhatsApp.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src/WhatsApp.d.ts"
   ],
   "keywords": [
     "whatsapp",

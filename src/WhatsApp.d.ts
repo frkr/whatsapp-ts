@@ -1,40 +1,40 @@
-export interface WhatsApp {
+interface WhatsApp {
     object: string;
     entry?: (EntryEntity)[] | null;
 }
 
-export interface EntryEntity {
+interface EntryEntity {
     id: string;
     changes?: (ChangesEntity)[] | null;
 }
 
-export interface ChangesEntity {
+interface ChangesEntity {
     value: Value;
     field: string;
 }
 
-export interface Value {
+interface Value {
     messaging_product: string;
     metadata: Metadata;
     contacts?: (ContactsEntity)[] | null;
     messages?: (MessagesEntity)[] | null;
 }
 
-export interface Metadata {
+interface Metadata {
     display_phone_number: string;
     phone_number_id: string;
 }
 
-export interface ContactsEntity {
+interface ContactsEntity {
     profile: Profile;
     wa_id: string;
 }
 
-export interface Profile {
+interface Profile {
     name: string;
 }
 
-export interface MessagesEntity {
+interface MessagesEntity {
     from: string;
     id: string;
     timestamp: string;
@@ -44,7 +44,7 @@ export interface MessagesEntity {
     sticker?: ImageMessage;
 }
 
-export interface ImageMessage {
+interface ImageMessage {
     type?: string | "text" | "image" | "sticker"
     mime_type?: string | "image/jpeg" | "image/webp"
     sha256?: string
@@ -55,7 +55,7 @@ export interface ImageMessage {
     link?: string
 }
 
-export interface TextMessage {
+interface TextMessage {
     preview_url?: boolean;
     body: string;
 }

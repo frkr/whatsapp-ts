@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/frkr/whatsapp-ts"
   },
+  "scripts": {
+    "build": "tsc"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [

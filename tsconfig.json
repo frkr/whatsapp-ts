@@ -1,15 +1,12 @@
 {
-  "files": [
-    "src/index.ts"
-  ],
   "compilerOptions": {
-    "target": "es2016",
-    "module": "es2016",
+    "target": "es2022",
+    "module": "es2022",
     "declaration": true,
     "outDir": "./dist",
     "types": [
       "./src/WhatsApp.d.ts"
-    ],
+    ]
     //    "noEmit": false,
     //    "strict": true,
     //    "noImplicitAny": true,

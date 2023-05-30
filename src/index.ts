@@ -1,3 +1,5 @@
+import './WhatsApp';
+
 export function onlyNumbers(waid: string): string {
     return waid.replace(/[^0-9]/g, '');
 }

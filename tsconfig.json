@@ -4,9 +4,9 @@
     "module": "es2022",
     "declaration": true,
     "outDir": "./dist",
-    "types": [
-      "./src/WhatsApp.d.ts"
-    ]
+//    "types": [
+//      "./src/WhatsApp.d.ts"
+//    ]
     //    "noEmit": false,
     //    "strict": true,
     //    "noImplicitAny": true,

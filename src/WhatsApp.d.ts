@@ -1,3 +1,5 @@
+type MessageType = "text" | "image" | "sticker";
+
 interface WhatsApp {
     object: string;
     entry?: (EntryEntity)[] | null;
@@ -38,14 +40,14 @@ interface MessagesEntity {
     from: string;
     id: string;
     timestamp: string;
-    type: "text" | "image" | "sticker";
+    type: MessageType;
     text?: TextMessage;
     image?: ImageMessage;
     sticker?: ImageMessage;
 }
 
 interface ImageMessage {
-    type?: string | "text" | "image" | "sticker"
+    type?: string | MessageType
     mime_type?: string | "image/jpeg" | "image/webp"
     sha256?: string
     id?: string

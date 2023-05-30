@@ -1,5 +1,3 @@
-import './WhatsApp';
-
 export function onlyNumbers(waid: string): string {
     return waid.replace(/[^0-9]/g, '');
 }
@@ -12,7 +10,7 @@ export function defaultHeaders(apikey: string) {
     }
 }
 
-export function payload(apikey: string, json: object = null, method = "POST"): any {
+export function payload(apikey: string, json: object | null = null, method = "POST"): any {
     if (json === null) {
         return {
             headers: defaultHeaders(apikey),
@@ -43,7 +41,7 @@ export async function readMessage(msgid: string, accid: string, apikey: string):
 }
 
 // TODO fazer msg de template
-export async function sendMessage(waid: string, type: string | "text" | "image" | "sticker", message: ImageMessage | TextMessage, accid: string, apikey: string) {
+export async function sendMessage(waid: string, type: string | MessageType, message: ImageMessage | TextMessage, accid: string, apikey: string) {
 
     let content = {
         "messaging_product": "whatsapp",

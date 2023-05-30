@@ -2,29 +2,11 @@
   "compilerOptions": {
     "target": "es2022",
     "module": "es2022",
-    "declaration": true,
     "outDir": "./dist",
-//    "types": [
-//      "./src/WhatsApp.d.ts"
-//    ]
-    //    "noEmit": false,
-    //    "strict": true,
-    //    "noImplicitAny": true,
-    //    "strictNullChecks": true,
-    //    "strictFunctionTypes": true,
-    //    "strictBindCallApply": true,
-    //    "strictPropertyInitialization": true,
-    //    "noImplicitThis": true,
-    //    "alwaysStrict": true,
-    //    "noUnusedLocals": true,
-    //    "noUnusedParameters": true,
-    //    "noImplicitReturns": true,
-    //    "noFallthroughCasesInSwitch": true,
-    //    "noUncheckedIndexedAccess": true,
-    //    "noImplicitOverride": true,
-    //    "noPropertyAccessFromIndexSignature": true,
-    //    "esModuleInterop": true
-    //    "forceConsistentCasingInFileNames": true,
-    //    "skipLibCheck": true
+    "declaration": true,
+    "esModuleInterop": true,
+    "types": [
+      "./src/WhatsApp.d.ts"
+    ]
   }
 }

@@ -1,3 +1,5 @@
+import "./index";
+// import {ImageMessage, TextMessage} from "./WhatsApp";
 export function onlyNumbers(waid) {
     return waid.replace(/[^0-9]/g, '');
 }

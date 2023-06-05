@@ -41,7 +41,7 @@ export async function readMessage(msgid: string, accid: string, apikey: string):
 }
 
 // TODO fazer msg de template
-export async function sendMessage(waid: string, type: string | MessageType, message: ImageMessage | TextMessage, accid: string, apikey: string) {
+export async function sendMessage(waid: string, type: string | MessageTypesSend, message: MediaMessage | TextMessage, accid: string, apikey: string) {
 
     let content = {
         "messaging_product": "whatsapp",
@@ -107,11 +107,11 @@ export function challenge(request: Request, VERIFY_TOKEN: string): Response {
     return new Response("404 Not Found", {status: 404});
 }
 
-export async function getImageURL(imgid: string, apikey: string): Promise<ImageMessage> {
+export async function getImageURL(imgid: string, apikey: string): Promise<MediaMessage> {
     return await (await fetch(`https://graph.facebook.com/v16.0/${imgid}/`, payload(apikey))).json();
 }
 
-export async function storeImage(buffer: Blob, accid: string, apikey: string): Promise<ImageMessage> {
+export async function storeImage(buffer: Blob, accid: string, apikey: string): Promise<MediaMessage> {
     let url = `https://graph.facebook.com/v16.0/${accid}/media/`
 
     let form = new FormData();

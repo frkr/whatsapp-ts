@@ -26,11 +26,11 @@ export function payload(apikey: string, json: object | null = null, method = "PO
 }
 
 export function defaultUrl(accid: string): string {
-    return `https://graph.facebook.com/v16.0/${accid}/messages`;
+    return `https://graph.facebook.com/v17.0/${accid}/messages`;
 }
 
 export async function readMessage(msgid: string, accid: string, apikey: string): Promise<void> {
-
+// TODO
     let content = {
         "messaging_product": "whatsapp",
         "status": "read",
@@ -40,18 +40,8 @@ export async function readMessage(msgid: string, accid: string, apikey: string):
     await fetch(defaultUrl(accid), payload(apikey, content));
 }
 
-// TODO fazer msg de template
-export async function sendMessage(waid: string, type: string | MessageTypesSend, message: MediaMessage | TextMessage, accid: string, apikey: string) {
-
-    let content = {
-        "messaging_product": "whatsapp",
-        "recipient_type": "individual",
-        "to": waid,
-        "type": type,
-    }
-    content[type] = message;
-
-    await fetch(defaultUrl(accid), payload(apikey, content));
+export async function sendMessage(message: MessageObjectRequest, accid: string, apikey: string) {
+    await fetch(defaultUrl(accid), payload(apikey, message));
 }
 
 export async function sendMessageMultiPart(waid: string, texto: string, accid: string, apikey: string): Promise<void> {
@@ -63,7 +53,16 @@ export async function sendMessageMultiPart(waid: string, texto: string, accid: s
     }
 
     for (let k = 0; k < msgFinal.length; k = k + 1) {
-        await sendMessage(waid, "text", {body: msgFinal[k], preview_url: true} as TextMessage, accid, apikey);
+        await sendMessage({
+            messaging_product: "whatsapp",
+            recipient_type: "individual",
+            to: waid,
+            type: "text",
+            text: {
+                body: msgFinal[k],
+                preview_url: true
+            }
+        }, accid, apikey);
     }
 }
 
@@ -84,11 +83,11 @@ export async function sendTemplate(namespace: string, waid: string, param: strin
     }
 
     let content = {
-        "messaging_product": "whatsapp",
-        "to": waid,
-        "type": "template",
-        "template": msgTmpl
-    }
+        messaging_product: "whatsapp",
+        to: waid,
+        type: "template",
+        template: msgTmpl
+    } as MessageObjectRequest
 
     await fetch(defaultUrl(accid), payload(apikey, content));
 }
@@ -108,11 +107,11 @@ export function challenge(request: Request, VERIFY_TOKEN: string): Response {
 }
 
 export async function getImageURL(imgid: string, apikey: string): Promise<MediaMessage> {
-    return await (await fetch(`https://graph.facebook.com/v16.0/${imgid}/`, payload(apikey))).json();
+    return await (await fetch(`https://graph.facebook.com/v17.0/${imgid}/`, payload(apikey))).json();
 }
 
 export async function storeImage(buffer: Blob, accid: string, apikey: string): Promise<MediaMessage> {
-    let url = `https://graph.facebook.com/v16.0/${accid}/media/`
+    let url = `https://graph.facebook.com/v17.0/${accid}/media/`
 
     let form = new FormData();
     form.set('type', "image/*")

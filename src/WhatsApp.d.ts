@@ -17,7 +17,7 @@ interface ValueEntity {
     messaging_product: "whatsapp";
     metadata: MetadataEntity;
     contacts?: Array<ContactsEntity>;
-    messages?: Array<MessageObject>;
+    messages?: Array<MessageObjectEvent>;
 
     errors: any // TODO
     statuses: any // TODO
@@ -37,51 +37,65 @@ interface ProfileEntity {
     name: string;
 }
 
-type MessageTypesSend = "text" | "template" | "hsm" | "interactive" | "order" | "reaction" | "location" | "contacts"
-type MessageTypes = "button" | "system" | "unknown" | MessageTypesSend | MediaTypes
+type MessageTypesRequest =
+    MediaTypes
+    | "text"
+    | "template"
+    | "hsm"
+    | "interactive"
+    | "order"
+    | "reaction"
+    | "location"
+    | "contacts"
+type MessageTypes = "button" | "system" | "unknown" | MessageTypesRequest
 
 type MediaTypes = "audio" | "document" | "image" | "sticker" | "video"
 
-interface MessageObjectSend extends MessageObject {
+interface MessageObjectRequest extends MessageObject {
     messaging_product: "whatsapp";
-    recipient_type?: "individual"
+    recipient_type: "individual"
     to: string;
-    type: MessageTypesSend;
+    type: MessageTypesRequest;
     //ttl?: number
     template?: any // TODO
     hsm?: any // TODO
 }
 
+interface MessageObjectEvent extends MessageObject {
+    from: string;
+    id: string;
+    timestamp: string;
+}
+
 interface MessageObject {
     type: MessageTypes;
 
-    audio?: any // TODO
+    audio?: MediaObject // TODO
     button?: any // TODO
     context?: any // TODO
     document?: any // TODO
     errors?: any // TODO
-    from: string;
-    id: string;
 
     identity?: any // TODO
-    image?: any // TODO
+    image?: MediaMessage // TODO
     interactive?: any // TODO
     order?: any // TODO
     referral?: any // TODO
-    system: any // TODO
+    system?: any // TODO
     text?: TextMessage
-    timestamp: string;
-    video: MessageTypes;
+    video?: MediaMessage;
 
 }
 
-interface TextMessage {
+interface MessageEntity {
+}
+
+interface TextMessage extends MessageEntity {
     preview_url?: boolean;
     body: string;
-    timestamp?: number
 }
 
-interface MediaMessage {
+interface MediaMessage extends MessageEntity {
     id?: string;
     link?: string;
     filename?: string;

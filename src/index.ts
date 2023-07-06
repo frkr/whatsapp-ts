@@ -71,7 +71,9 @@ export async function sendTemplate(namespace: string, waid: string, param: strin
     let msgTmpl = {
         name: namespace,
         language: {code: 'pt_BR'},
-        components: [
+    }
+    if (param) {
+        msgTmpl["components"] = [
             {
                 type: 'body',
                 parameters: [{

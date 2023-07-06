@@ -66,7 +66,7 @@ export async function sendMessageMultiPart(waid: string, texto: string, accid: s
     }
 }
 
-export async function sendTemplate(namespace: string, waid: string, param: string, accid: string, apikey: string): Promise<void> {
+export async function sendTemplate(namespace: string, waid: string, accid: string, apikey: string, param: string = null): Promise<void> {
 
     let msgTmpl = {
         name: namespace,

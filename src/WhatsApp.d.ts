@@ -53,7 +53,7 @@ type MediaTypes = "audio" | "document" | "image" | "sticker" | "video"
 
 interface MessageObjectRequest extends MessageObject {
     messaging_product: "whatsapp";
-    recipient_type: "individual"
+    recipient_type?: "individual"
     to: string;
     type: MessageTypesRequest;
     //ttl?: number

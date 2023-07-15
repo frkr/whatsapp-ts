@@ -100,7 +100,6 @@ export function challenge(request: Request, VERIFY_TOKEN: string): Response {
         if (
             query.get('hub.mode') === "subscribe" &&
             query.get('hub.verify_token') === VERIFY_TOKEN
-            //&& request.cf?.asOrganization === "Facebook" // Cloudflare
         ) {
             return new Response(query.get('hub.challenge'), {status: 200});
         }

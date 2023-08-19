@@ -141,7 +141,7 @@ export async function getMedia(apikey: string, url: string): Promise<Blob> {
     return await (await fetch(url, {
             headers: {
                 Authorization: `Bearer ${apikey}`,
-                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+                'User-Agent': "PostmanRuntime/7.26.8",
             },
             method: "GET",
         }

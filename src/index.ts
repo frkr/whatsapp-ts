@@ -1,11 +1,7 @@
-//region Types
 export interface WAAuth {
     accid: string;
     apikey: string;
 }
-
-//endregion
-
 
 export function onlyNumbers(waid: string): string {
     return waid.replace(/[^0-9]/g, '');
@@ -19,17 +15,17 @@ export function defaultHeaders(apikey: string) {
     }
 }
 
-export function payload(apikey: string, json: object | null = null, method = "POST"): any {
-    if (json === null) {
-        return {
-            headers: defaultHeaders(apikey),
-            method: "GET"
-        }
-    } else {
+export function payload(apikey: string, json: object = null, method = "POST"): any {
+    if (json) {
         return {
             headers: defaultHeaders(apikey),
             method: method,
             body: JSON.stringify(json),
+        }
+    } else {
+        return {
+            headers: defaultHeaders(apikey),
+            method: "GET"
         }
     }
 }
@@ -118,11 +114,11 @@ export function challenge(VERIFY_TOKEN: string, request: Request): Response {
     return new Response("404 Not Found", {status: 404});
 }
 
-export async function getImageURL(apikey: string, imgid: string): Promise<MediaMessage> {
-    return await (await fetch(`https://graph.facebook.com/v17.0/${imgid}/`, payload(apikey))).json();
+export async function getMediaURL(apikey: string, id: string): Promise<MediaObject> {
+    return await (await fetch(`https://graph.facebook.com/v17.0/${id}/`, payload(apikey))).json();
 }
 
-export async function storeImage(auth: WAAuth, buffer: Blob): Promise<MediaMessage> {
+export async function postMedia(auth: WAAuth, buffer: Blob): Promise<MediaMessage> {
     let url = `https://graph.facebook.com/v17.0/${auth.accid}/media/`
 
     let form = new FormData();
@@ -141,23 +137,13 @@ export async function storeImage(auth: WAAuth, buffer: Blob): Promise<MediaMessa
     return await imageStore.json();
 }
 
-export async function getImage(apikey: string, url: string): Promise<Blob> {
+export async function getMedia(apikey: string, url: string): Promise<Blob> {
     return await (await fetch(url, {
             headers: {
                 Authorization: `Bearer ${apikey}`,
-                //'User-Agent': "Cloudflare Workers",
-                //"Accept": "image/webp;"
+                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
             },
             method: "GET",
-            // cf: { // TODO Cloudflare
-            //     image: {
-            //         width: 512,
-            //         height: 512,
-            //         fit: "cover",
-            //     },
-            //     polish: "lossless",
-            //     webp: true,
-            // }
         }
     )).blob();
 }

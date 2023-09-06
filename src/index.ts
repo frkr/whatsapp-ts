@@ -52,6 +52,9 @@ export async function sendMessage(auth: WAAuth, message: MessageObjectRequest) {
 }
 
 export async function sendMessageMultiPart(auth: WAAuth, waid: string, texto: string, limit = 4096): Promise<void> {
+   if (!texto) {
+        return;
+    }
     let msgFinal = []
     if (texto.length > limit) {
         msgFinal = texto.match(new RegExp(`.{1,${limit}}/g`));

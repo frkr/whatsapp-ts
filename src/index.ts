@@ -51,14 +51,13 @@ export async function sendMessage(auth: WAAuth, message: MessageObjectRequest) {
     return defaultFetch(auth, message);
 }
 
-export async function sendMessageMultiPart(auth: WAAuth, waid: string, texto: String, limit = 4096): Promise<void> {
+export async function sendMessageMultiPart(auth: WAAuth, waid: string, texto:string): Promise<void> {
    if (!texto) {
         return;
     }
-   texto = texto+"";
     let msgFinal = []
-    if (texto.length > limit) {
-        msgFinal = texto.match(new RegExp(`.{1,${limit}}/g`));
+    if (texto.length > 600) {
+        msgFinal = texto.split(/.{1,600/g);
     } else {
         msgFinal.push(texto)
     }

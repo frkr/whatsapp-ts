@@ -51,7 +51,7 @@ export async function sendMessage(auth: WAAuth, message: MessageObjectRequest) {
     return defaultFetch(auth, message);
 }
 
-export async function sendMessageMultiPart(auth: WAAuth, waid: string, texto: string, limit = 4096): Promise<void> {
+export async function sendMessageMultiPart(auth: WAAuth, waid: string, texto: String, limit = 4096): Promise<void> {
    if (!texto) {
         return;
     }

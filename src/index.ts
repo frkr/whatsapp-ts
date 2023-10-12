@@ -31,7 +31,7 @@ export function payload(apikey: string, json: object = null, method = "POST"): a
 }
 
 export function defaultUrlMsg(accid: string): string {
-    return `https://graph.facebook.com/v17.0/${accid}/messages`;
+    return `https://graph.facebook.com/v18.0/${accid}/messages`;
 }
 
 async function defaultFetch(auth: WAAuth, content: object): Promise<Response> {

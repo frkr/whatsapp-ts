@@ -78,7 +78,7 @@ interface MessageObject {
 
     identity?: any // TODO
     image?: MediaMessage // TODO
-    interactive?: any // TODO
+    interactive?: InteractiveMessage
     order?: any // TODO
     referral?: any // TODO
     system?: any // TODO
@@ -88,6 +88,34 @@ interface MessageObject {
 }
 
 interface MessageEntity {
+}
+
+interface InteractiveMessage {
+    type: "list";
+    header?: VariableEntity;
+    body?: VariableEntity;
+    footer?: VariableEntity;
+    action?: ActionEntity;
+}
+
+interface ActionEntity {
+    button: string;
+    sections: Array<SectionsEntity>;
+}
+interface SectionsEntity {
+    title:string;
+    rows: Array<RowsEntity>;
+}
+
+interface RowsEntity {
+    id: string;
+    title: string;
+    description: string;
+}
+
+interface VariableEntity {
+    type?: 'text';
+    text?: string;
 }
 
 interface TextMessage extends MessageEntity {

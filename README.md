@@ -1,4 +1,4 @@
-# Business Whatsapp 17 unofficial
+# Business Whatsapp 18 unofficial
 
 [![Node.js Package](https://github.com/frkr/whatsapp-ts/actions/workflows/npm-publish.yml/badge.svg?branch=master)](https://github.com/frkr/whatsapp-ts/actions/workflows/npm-publish.yml)
 

@@ -150,3 +150,37 @@ export async function getMedia(apikey: string, url: string): Promise<Blob> {
         }
     )).blob();
 }
+
+export async function sendMenu(auth: WAAuth, waid: string, posicao:string,button:string, body:string,  ...item:RowsEntity[] ): Promise<Response> {
+   let msgInteractive:InteractiveMessage = {
+       type: "list",
+       header: {
+           text:"i",
+       },
+       footer: {
+              text:posicao,
+       },
+       body: {
+           type: "text",
+              text: body,
+       },
+       action: {
+              button: button,
+           sections: [{
+                title: posicao,
+                rows: item,
+               }]
+       }
+   }
+
+
+    let content:MessageObjectRequest = {
+        recipient_type: "individual",
+        messaging_product: "whatsapp",
+        to: waid,
+        type: "interactive",
+        interactive: msgInteractive
+    };
+
+    return defaultFetch(auth, content);
+}

@@ -43,7 +43,7 @@ export class ProfileEntity {
     name: string;
 }
 
-type MessageTypesRequest =
+export type MessageTypesRequest =
     MediaTypes
     | "text"
     | "template"
@@ -53,9 +53,9 @@ type MessageTypesRequest =
     | "reaction"
     | "location"
     | "contacts"
-type MessageTypes = "button" | "system" | "unknown" | MessageTypesRequest
+export type MessageTypes = "button" | "system" | "unknown" | MessageTypesRequest
 
-type MediaTypes = "audio" | "document" | "image" | "sticker" | "video"
+export type MediaTypes = "audio" | "document" | "image" | "sticker" | "video"
 
 export class MessageObject {
     type: MessageTypes;

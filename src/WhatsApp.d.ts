@@ -1,25 +1,19 @@
-
-export class WAAuth {
-    accid: string;
-    apikey: string;
-}
-
-export class WhatsAppNotification {
+interface WhatsAppNotification {
     object: "whatsapp_business_account";
     entry: Array<EntryEntity>;
 }
 
-export class EntryEntity {
+interface EntryEntity {
     id: string;
     changes: Array<ValueObject>;
 }
 
-export class ValueObject {
+interface ValueObject {
     value: ValueEntity;
     field: "messages";
 }
 
-export class ValueEntity {
+interface ValueEntity {
     messaging_product: "whatsapp";
     metadata: MetadataEntity;
     contacts?: Array<ContactsEntity>;
@@ -29,21 +23,21 @@ export class ValueEntity {
     statuses: any // TODO
 }
 
-export class MetadataEntity {
+interface MetadataEntity {
     display_phone_number: string;
     phone_number_id: string;
 }
 
-export class ContactsEntity {
+interface ContactsEntity {
     profile: ProfileEntity;
     wa_id: string;
 }
 
-export class ProfileEntity {
+interface ProfileEntity {
     name: string;
 }
 
-export type MessageTypesRequest =
+type MessageTypesRequest =
     MediaTypes
     | "text"
     | "template"
@@ -53,11 +47,27 @@ export type MessageTypesRequest =
     | "reaction"
     | "location"
     | "contacts"
-export type MessageTypes = "button" | "system" | "unknown" | MessageTypesRequest
+type MessageTypes = "button" | "system" | "unknown" | MessageTypesRequest
 
-export type MediaTypes = "audio" | "document" | "image" | "sticker" | "video"
+type MediaTypes = "audio" | "document" | "image" | "sticker" | "video"
 
-export class MessageObject {
+interface MessageObjectRequest extends MessageObject {
+    messaging_product: "whatsapp";
+    recipient_type?: "individual"
+    to: string;
+    type: MessageTypesRequest;
+    //ttl?: number
+    template?: any // TODO
+    hsm?: any // TODO
+}
+
+interface MessageObjectEvent extends MessageObject {
+    from: string;
+    id: string;
+    timestamp: string;
+}
+
+interface MessageObject {
     type: MessageTypes;
 
     audio?: MediaObject // TODO
@@ -76,27 +86,11 @@ export class MessageObject {
     video?: MediaMessage;
 
 }
-export class MessageObjectRequest extends MessageObject {
-    messaging_product: "whatsapp";
-    recipient_type?: "individual"
-    to: string;
-    type: MessageTypesRequest=null;
-    //ttl?: number
-    template?: any // TODO
-    hsm?: any // TODO
+
+interface MessageEntity {
 }
 
-export class MessageObjectEvent extends MessageObject {
-    from: string;
-    id: string;
-    timestamp: string;
-}
-
-
-export class MessageEntity {
-}
-
-export class InteractiveMessage {
+interface InteractiveMessage {
     type: "list";
     header?: VariableEntity;
     body?: VariableEntity;
@@ -104,39 +98,39 @@ export class InteractiveMessage {
     action?: ActionEntity;
 }
 
-export class ActionEntity {
+interface ActionEntity {
     button: string;
     sections: Array<SectionsEntity>;
 }
-export class SectionsEntity {
+interface SectionsEntity {
     title:string;
     rows: Array<RowsEntity>;
 }
 
-export class RowsEntity {
-    id?: string;
-    title?: string;
-    description?: string;
+interface RowsEntity {
+    id: string;
+    title: string;
+    description: string;
 }
 
-export class VariableEntity {
+interface VariableEntity {
     type?: 'text';
     text?: string;
 }
 
-export class MenuRequest {
+interface MenuRequest {
     titulo?: string;
     msg?: string;
     rodape?: string;
     itens: string[];
 }
 
-export class TextMessage extends MessageEntity {
+interface TextMessage extends MessageEntity {
     preview_url?: boolean;
     body: string;
 }
 
-export class MediaMessage extends MessageEntity {
+interface MediaMessage extends MessageEntity {
     id?: string;
     link?: string;
     filename?: string;
@@ -144,12 +138,12 @@ export class MediaMessage extends MessageEntity {
 
 }
 
-export class MediaObject {
-    messaging_product: "whatsapp";
+interface MediaObject {
+    messaging_product: "whatsapp",
     url?: string
     mime_type?: string
     sha256?: string
-    file_size?: number;
+    file_size?: number,
     id?: string
     caption?: string
 }

@@ -1,4 +1,7 @@
-import {InteractiveMessage, MediaMessage, MediaObject, MenuRequest, MessageObjectRequest, RowsEntity, WAAuth } from "./WhatsApp";
+export interface WAAuth {
+    accid: string;
+    apikey: string;
+}
 
 export function onlyNumbers(waid: string): string {
     return waid.replace(/[^0-9]/g, '');
@@ -149,8 +152,11 @@ export async function getMedia(apikey: string, url: string): Promise<Blob> {
 }
 
 export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): Promise<Response> {
-    let msgInteractive:InteractiveMessage = {
+    let msgInteractive: InteractiveMessage = {
         type: "list",
+        header:null,
+        body: null,
+        footer: null,
         action: {
             button: 'Menu',
             sections: [{
@@ -159,9 +165,9 @@ export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): P
                   return {
                       id: `${index}`,
                       title: `${index}`,
-                      body: item,
+                      description: item,
                   } as RowsEntity;  
-                })
+                }),
             }]
         }
     }
@@ -177,7 +183,7 @@ export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): P
         }
     }
     if (menu.rodape) {
-        msgInteractive.footer= {
+        msgInteractive.footer = {
             text: menu.rodape,
         }
     }

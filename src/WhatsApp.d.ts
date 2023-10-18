@@ -108,14 +108,21 @@ interface SectionsEntity {
 }
 
 interface RowsEntity {
-    id: string;
-    title: string;
-    description: string;
+    id?: string;
+    title?: string;
+    description?: string;
 }
 
 interface VariableEntity {
     type?: 'text';
     text?: string;
+}
+
+interface MenuRequest {
+    titulo?: string;
+    msg?: string;
+    rodape?: string;
+    itens: string[];
 }
 
 interface TextMessage extends MessageEntity {

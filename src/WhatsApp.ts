@@ -1,19 +1,25 @@
-interface WhatsAppNotification {
+
+export class WAAuth {
+    accid: string;
+    apikey: string;
+}
+
+export class WhatsAppNotification {
     object: "whatsapp_business_account";
     entry: Array<EntryEntity>;
 }
 
-interface EntryEntity {
+export class EntryEntity {
     id: string;
     changes: Array<ValueObject>;
 }
 
-interface ValueObject {
+export class ValueObject {
     value: ValueEntity;
     field: "messages";
 }
 
-interface ValueEntity {
+export class ValueEntity {
     messaging_product: "whatsapp";
     metadata: MetadataEntity;
     contacts?: Array<ContactsEntity>;
@@ -23,17 +29,17 @@ interface ValueEntity {
     statuses: any // TODO
 }
 
-interface MetadataEntity {
+export class MetadataEntity {
     display_phone_number: string;
     phone_number_id: string;
 }
 
-interface ContactsEntity {
+export class ContactsEntity {
     profile: ProfileEntity;
     wa_id: string;
 }
 
-interface ProfileEntity {
+export class ProfileEntity {
     name: string;
 }
 
@@ -51,23 +57,7 @@ type MessageTypes = "button" | "system" | "unknown" | MessageTypesRequest
 
 type MediaTypes = "audio" | "document" | "image" | "sticker" | "video"
 
-interface MessageObjectRequest extends MessageObject {
-    messaging_product: "whatsapp";
-    recipient_type?: "individual"
-    to: string;
-    type: MessageTypesRequest;
-    //ttl?: number
-    template?: any // TODO
-    hsm?: any // TODO
-}
-
-interface MessageObjectEvent extends MessageObject {
-    from: string;
-    id: string;
-    timestamp: string;
-}
-
-interface MessageObject {
+export class MessageObject {
     type: MessageTypes;
 
     audio?: MediaObject // TODO
@@ -86,11 +76,27 @@ interface MessageObject {
     video?: MediaMessage;
 
 }
-
-interface MessageEntity {
+export class MessageObjectRequest extends MessageObject {
+    messaging_product: "whatsapp";
+    recipient_type?: "individual"
+    to: string;
+    type: MessageTypesRequest=null;
+    //ttl?: number
+    template?: any // TODO
+    hsm?: any // TODO
 }
 
-interface InteractiveMessage {
+export class MessageObjectEvent extends MessageObject {
+    from: string;
+    id: string;
+    timestamp: string;
+}
+
+
+export class MessageEntity {
+}
+
+export class InteractiveMessage {
     type: "list";
     header?: VariableEntity;
     body?: VariableEntity;
@@ -98,39 +104,39 @@ interface InteractiveMessage {
     action?: ActionEntity;
 }
 
-interface ActionEntity {
+export class ActionEntity {
     button: string;
     sections: Array<SectionsEntity>;
 }
-interface SectionsEntity {
+export class SectionsEntity {
     title:string;
     rows: Array<RowsEntity>;
 }
 
-interface RowsEntity {
+export class RowsEntity {
     id?: string;
     title?: string;
     description?: string;
 }
 
-interface VariableEntity {
+export class VariableEntity {
     type?: 'text';
     text?: string;
 }
 
-interface MenuRequest {
+export class MenuRequest {
     titulo?: string;
     msg?: string;
     rodape?: string;
     itens: string[];
 }
 
-interface TextMessage extends MessageEntity {
+export class TextMessage extends MessageEntity {
     preview_url?: boolean;
     body: string;
 }
 
-interface MediaMessage extends MessageEntity {
+export class MediaMessage extends MessageEntity {
     id?: string;
     link?: string;
     filename?: string;
@@ -138,12 +144,12 @@ interface MediaMessage extends MessageEntity {
 
 }
 
-interface MediaObject {
-    messaging_product: "whatsapp",
+export class MediaObject {
+    messaging_product: "whatsapp";
     url?: string
     mime_type?: string
     sha256?: string
-    file_size?: number,
+    file_size?: number;
     id?: string
     caption?: string
 }

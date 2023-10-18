@@ -5,8 +5,5 @@
     "outDir": "./dist",
     "declaration": true,
     "esModuleInterop": true,
-    "types": [
-      "./src/WhatsApp.d.ts"
-    ]
   }
 }

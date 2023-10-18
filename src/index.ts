@@ -51,8 +51,8 @@ export async function sendMessage(auth: WAAuth, message: MessageObjectRequest) {
     return defaultFetch(auth, message);
 }
 
-export async function sendMessageMultiPart(auth: WAAuth, waid: string, texto:string): Promise<void> {
-   if (!texto) {
+export async function sendMessageMultiPart(auth: WAAuth, waid: string, texto: string): Promise<void> {
+    if (!texto) {
         return;
     }
     let msgFinal = []
@@ -151,30 +151,30 @@ export async function getMedia(apikey: string, url: string): Promise<Blob> {
     )).blob();
 }
 
-export async function sendMenu(auth: WAAuth, waid: string, posicao:string,button:string, body:string,  ...item:RowsEntity[] ): Promise<Response> {
-   let msgInteractive:InteractiveMessage = {
-       type: "list",
-       header: {
-           text:"i",
-       },
-       footer: {
-              text:posicao,
-       },
-       body: {
-           type: "text",
-              text: body,
-       },
-       action: {
-              button: button,
-           sections: [{
+export async function sendMenu(auth: WAAuth, waid: string, posicao: string, button: string, body: string, ...item: RowsEntity[]): Promise<Response> {
+    let msgInteractive: InteractiveMessage = {
+        type: "list",
+        header: {
+            type: "text",
+            text: "i",
+        },
+        footer: {
+            text: posicao,
+        },
+        body: {
+            text: body,
+        },
+        action: {
+            button: button,
+            sections: [{
                 title: posicao,
                 rows: item,
-               }]
-       }
-   }
+            }]
+        }
+    }
 
 
-    let content:MessageObjectRequest = {
+    let content: MessageObjectRequest = {
         recipient_type: "individual",
         messaging_product: "whatsapp",
         to: waid,

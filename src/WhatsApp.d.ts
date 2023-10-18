@@ -108,9 +108,9 @@ interface SectionsEntity {
 }
 
 interface RowsEntity {
-    id: string;
+    id?: string;
     title: string;
-    description: string;
+    description?: string;
 }
 
 interface VariableEntity {

@@ -163,9 +163,9 @@ export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): P
                 title: 'Menu',
                 rows: menu.itens.map((item, index) => {
                   return {
-                      id: `${index}`,
-                      title: `${index}`,
-                      description: item,
+                      id: null,
+                      title: item,
+                      description: null,
                   } as RowsEntity;  
                 }),
             }]

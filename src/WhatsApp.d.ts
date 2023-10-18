@@ -120,7 +120,7 @@ interface VariableEntity {
 
 interface MenuRequest {
     titulo?: string;
-    msg?: string;
+    msg: string;
     rodape?: string;
     itens: string[];
 }

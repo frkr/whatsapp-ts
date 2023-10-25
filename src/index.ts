@@ -109,7 +109,7 @@ export function challenge(VERIFY_TOKEN: string, request: Request): Response {
         let query = new URL(request.url).searchParams;
         if (
             query.get('hub.mode') === "subscribe" &&
-            query.get('hub.verify_token') === VERIFY_TOKEN
+            query.get('hub.verify_token').startsWith(VERIFY_TOKEN)
         ) {
             return new Response(query.get('hub.challenge'), {status: 200});
         }

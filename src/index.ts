@@ -167,7 +167,7 @@ export async function sendOptions(auth: WAAuth, waid: string, body: string, ...o
                     return {
                         type: 'reply',
                         reply: {
-                            id: `${new Date().getTime() + index}`,
+                            id: `${index}`,
                             title: item as string,
                         } as RowsEntity
                     } as ButtonEntity;
@@ -186,23 +186,28 @@ export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): P
         body: null,
         footer: null,
         action: {
-            button: 'Menu',
+            button: (menu.botao) ? menu.botao : 'Menu',
             sections: [{
-                title: menu.titulo as string,
                 rows: menu.itens.map((item, index) => {
+
+                    let prod: RowsEntity = item;
+                    if (typeof item === "string") {
+                        prod = {
+                            description: item as string,
+                        } as RowsEntity;
+                    }
+
+                    const id = (prod.id) ? prod.id : `${index + 1}`;
+                    const title = (prod.title) ? prod.title : id;
+                    const description = (prod.description) ? prod.description : null;
+
                     return {
-                        id: `${index + 1}`,
-                        title: ((item.title) ? item.title : item.description) as string,
-                        description: ((item.description) ? item.description : item.title) as string,
+                        id,
+                        title,
+                        description,
                     } as RowsEntity;
                 }),
             }]
-        }
-    }
-    if (menu.titulo) {
-        msgInteractive.header = {
-            type: "text",
-            text: menu.titulo as string,
         }
     }
     if (menu.mensagem) {

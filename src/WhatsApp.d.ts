@@ -118,7 +118,7 @@ interface ActionEntity {
 }
 
 interface SectionsEntity {
-    title: string;
+    title?: string;
     rows: Array<RowsEntity>;
 }
 
@@ -134,10 +134,11 @@ interface VariableEntity {
 }
 
 interface MenuRequest {
-    titulo?: string;
+    title?: string;
+    botao?: string;
     mensagem: string;
     rodape?: string;
-    itens: Array<RowsEntity>;
+    itens: Array<RowsEntity> | string[];
 }
 
 interface TextMessage extends MessageEntity {

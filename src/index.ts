@@ -151,6 +151,34 @@ export async function getMedia(apikey: string, url: string): Promise<Blob> {
     )).blob();
 }
 
+export async function sendOptions(auth: WAAuth, waid: string, body: string, ...options: string[]): Promise<Response> {
+    let content: MessageObjectRequest = {
+        recipient_type: "individual",
+        messaging_product: "whatsapp",
+        to: waid,
+        type: "interactive",
+        interactive: {
+            type: "button",
+            body: {
+                text: body
+            },
+            action: {
+                buttons: options.map((item, index) => {
+                    return {
+                        type: 'reply',
+                        reply: {
+                            id: `${index}`,
+                            title: item as string,
+                        } as RowsEntity
+                    } as ButtonEntity;
+                })
+            }
+        }
+    };
+
+    return defaultFetch(auth, content);
+}
+
 export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): Promise<Response> {
     let msgInteractive: InteractiveMessage = {
         type: 'list',

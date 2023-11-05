@@ -79,6 +79,7 @@ interface MessageObject {
     identity?: any // TODO
     image?: MediaMessage // TODO
     interactive?: InteractiveMessage
+    location?: LocationMessage
     order?: any // TODO
     referral?: any // TODO
     system?: any // TODO
@@ -87,23 +88,37 @@ interface MessageObject {
 
 }
 
+interface LocationMessage {
+    longitude?: string,
+    latitude?: string,
+    name?: string,
+    address?: string,
+}
+
 interface MessageEntity {
 }
 
 interface InteractiveMessage {
-    type: "list";
+    type: "list" | "button"
     header?: VariableEntity;
     body?: VariableEntity;
     footer?: VariableEntity;
     action?: ActionEntity;
 }
 
-interface ActionEntity {
-    button: string;
-    sections: Array<SectionsEntity>;
+interface ButtonEntity {
+    type: 'reply',
+    reply?: RowsEntity;
 }
+
+interface ActionEntity {
+    buttons?: Array<ButtonEntity>;
+    button?: string;
+    sections?: Array<SectionsEntity>;
+}
+
 interface SectionsEntity {
-    title:string;
+    title: string;
     rows: Array<RowsEntity>;
 }
 

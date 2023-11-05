@@ -153,19 +153,19 @@ export async function getMedia(apikey: string, url: string): Promise<Blob> {
 
 export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): Promise<Response> {
     let msgInteractive: InteractiveMessage = {
-        type: "list",
-        header:null,
+        type: 'list',
+        header: null,
         body: null,
         footer: null,
         action: {
             button: 'Menu',
             sections: [{
                 title: 'Menu',
-                rows: menu.itens.map((item, index) => {
-                  return {
-                      id: `${index}`,
-                      title: item,
-                  } as RowsEntity;  
+                rows: (menu.itens as string[]).map((item, index) => {
+                    return {
+                        id: `${index}`,
+                        title: item as string,
+                    } as RowsEntity;
                 }),
             }]
         }
@@ -173,17 +173,17 @@ export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): P
     if (menu.titulo) {
         msgInteractive.header = {
             type: "text",
-            text: menu.titulo,
+            text: menu.titulo as string,
         }
     }
-    if (menu.msg) {
+    if (menu.mensagem) {
         msgInteractive.body = {
-            text: menu.msg,
+            text: menu.mensagem as string,
         }
     }
     if (menu.rodape) {
         msgInteractive.footer = {
-            text: menu.rodape,
+            text: menu.rodape as string,
         }
     }
 

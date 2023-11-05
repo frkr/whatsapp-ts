@@ -123,8 +123,8 @@ interface SectionsEntity {
 }
 
 interface RowsEntity {
-    id: string;
-    title: string;
+    id?: string;
+    title?: string;
     description?: string;
 }
 
@@ -137,7 +137,7 @@ interface MenuRequest {
     titulo?: string;
     mensagem: string;
     rodape?: string;
-    itens: string[];
+    itens: Array<RowsEntity>;
 }
 
 interface TextMessage extends MessageEntity {

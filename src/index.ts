@@ -188,12 +188,12 @@ export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): P
         action: {
             button: 'Menu',
             sections: [{
-                title: 'Menu',
-                rows: (menu.itens as string[]).map((item, index) => {
+                title: menu.titulo as string,
+                rows: menu.itens.map((item, index) => {
                     return {
-                        id: `${index+1}`,
-                        title: `${index+1}`,
-                        description: item as string,
+                        id: `${index + 1}`,
+                        title: ((item.title) ? item.title : item.description) as string,
+                        description: ((item.description) ? item.description : item.title) as string,
                     } as RowsEntity;
                 }),
             }]

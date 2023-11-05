@@ -191,8 +191,9 @@ export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): P
                 title: 'Menu',
                 rows: (menu.itens as string[]).map((item, index) => {
                     return {
-                        id: `${new Date().getTime() + index}`,
-                        title: item as string,
+                        id: `${index+1}`,
+                        title: `${index+1}`,
+                        description: item as string,
                     } as RowsEntity;
                 }),
             }]

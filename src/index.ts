@@ -38,6 +38,16 @@ async function defaultFetch(auth: WAAuth, content: object): Promise<Response> {
 	return fetch(defaultUrlMsg(auth.accid), payload(auth.apikey, content));
 }
 
+export async function pinRegister(auth: WAAuth, pin: string): Promise<Response> {
+	return fetch(
+		`https://graph.facebook.com/v18.0/${auth.accid}/register`,
+		payload(auth.apikey, {
+			'messaging_product': 'whatsapp',
+			'pin': pin,
+		}),
+	);
+}
+
 export async function readMessage(auth: WAAuth, msgid: string): Promise<Response> {
 	let content = {
 		'messaging_product': 'whatsapp',

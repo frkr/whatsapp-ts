@@ -241,3 +241,38 @@ export async function sendMenu(auth: WAAuth, waid: string, menu: MenuRequest): P
 
     return defaultFetch(auth, content);
 }
+
+export function templateGeneric(telefone: string, templ: string, namespace: string = null, ...args: string[]): MessageObjectRequest {
+    const ret: MessageObjectRequest = {
+        recipient_type: "individual",
+        messaging_product: "whatsapp",
+        to: telefone,
+        type: "template",
+        template: {
+            namespace: namespace,
+            name: templ,
+            language: {code: "pt_BR"},
+            components: [
+                {
+                    type: 'body',
+                    parameters: []
+                },
+            ]
+        }
+    };
+    if (!namespace) {
+        delete ret.template.namespace;
+    }
+    if (!args || args.length === 0) {
+        delete ret.template.components;
+    } else {
+        ret.template.components[0].parameters = args.map(item => {
+            return {
+                type: 'text',
+                text: item,
+            };
+        });
+    }
+
+    return ret;
+}

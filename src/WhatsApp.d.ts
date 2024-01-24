@@ -75,6 +75,7 @@ interface MessageObject {
     context?: any // TODO
     document?: any // TODO
     errors?: any // TODO
+    sticker?: any // TODO
 
     identity?: any // TODO
     image?: MediaMessage // TODO

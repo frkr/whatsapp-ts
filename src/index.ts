@@ -83,6 +83,7 @@ export class MessageObject {
     public order?: any // TODO
     public referral?: any // TODO
     public system?: any // TODO
+    public reaction?: any // TODO
     public text?: TextMessage
     public video?: MediaMessage;
 

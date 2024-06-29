@@ -1,4 +1,4 @@
-# Business Whatsapp 19 unofficial
+# Business Whatsapp 20 unofficial
 
 [![Node.js Package](https://github.com/frkr/whatsapp-ts/actions/workflows/npm-publish.yml/badge.svg?branch=master)](https://github.com/frkr/whatsapp-ts/actions/workflows/npm-publish.yml)
 

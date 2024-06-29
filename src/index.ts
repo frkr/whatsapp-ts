@@ -3,7 +3,7 @@ export class MetaAuth {
     apikey: string;
 }
 
-export const version = 19;
+export const version = 20;
 export const endpoint = "https://graph.facebook.com"
 export const endpointVersion = `${endpoint}/v${version}.0`;
 
@@ -73,6 +73,7 @@ export class MessageObject {
     public button?: any // TODO
     public context?: any // TODO
     public document?: any // TODO
+    public contacts?: any // TODO
     public errors?: any // TODO
     public sticker?: any // TODO
 
